@@ -8,27 +8,22 @@ const Index = () => {
   const [activeChannel, setActiveChannel] = useState("общее");
 
   const channels = [
-    { name: "объявления", icon: "Megaphone" },
-    { name: "общее", icon: "Hash" },
-    { name: "вопросы-ответы", icon: "HelpCircle" },
-    { name: "скриншоты", icon: "Camera" },
-    { name: "жалобы", icon: "AlertTriangle" },
+    { name: "объявления" },
+    { name: "общее" },
+    { name: "вопросы-ответы" },
+    { name: "скриншоты" },
+    { name: "жалобы" },
   ];
 
-  const voiceChannels = [
-    "Лобби",
-    "RP Зона",
-    "Командный чат",
-  ];
+  const voiceChannels = ["Лобби", "RP Зона", "Командный чат"];
 
   const messages = [
     {
       id: 1,
       user: "Sheriff_Kane",
       avatar: "S",
-      color: "from-yellow-600 to-yellow-800",
       role: "Администратор",
-      roleColor: "text-yellow-400",
+      roleColor: "#c0392b",
       time: "Сегодня в 09:15",
       text: "Добро пожаловать на официальный форум сервера Arizona Role Play Sedona! Здесь вы найдёте всю необходимую информацию, правила и поддержку.",
       pin: true,
@@ -37,9 +32,8 @@ const Index = () => {
       id: 2,
       user: "ProRPG_Alex",
       avatar: "А",
-      color: "from-blue-500 to-blue-700",
       role: "Игрок",
-      roleColor: "text-blue-400",
+      roleColor: "#7f8c8d",
       time: "Сегодня в 10:32",
       text: "Наконец-то попал на сервер! Народ, кто подскажет как устроиться в полицию? Только начинаю 🚔",
     },
@@ -47,9 +41,8 @@ const Index = () => {
       id: 3,
       user: "Mia_Ramirez",
       avatar: "М",
-      color: "from-pink-500 to-purple-600",
       role: "Ветеран",
-      roleColor: "text-purple-400",
+      roleColor: "#e67e22",
       time: "Сегодня в 10:35",
       text: "Читай раздел #вопросы-ответы — там всё расписано. Удачи в игре, Sedona лучший сервер! 🌵",
     },
@@ -57,321 +50,305 @@ const Index = () => {
       id: 4,
       user: "Night_Rider_88",
       avatar: "Н",
-      color: "from-red-500 to-orange-500",
       role: "Водитель",
-      roleColor: "text-orange-400",
+      roleColor: "#7f8c8d",
       time: "Сегодня в 11:01",
       text: "Вчера выиграл гонку на трассе! Скрин в #скриншоты залил. Кто хочет в следующий раз — пишите 🏎️",
     },
   ];
 
-  const categories = [
-    { icon: "Shield", label: "Правила", desc: "Законы сервера", color: "bg-yellow-500" },
-    { icon: "Download", label: "Скачать", desc: "Клиент игры", color: "bg-green-500" },
-    { icon: "Users", label: "Фракции", desc: "Банды и полиция", color: "bg-blue-500" },
-    { icon: "Star", label: "Топ игроков", desc: "Лучшие на сервере", color: "bg-purple-500" },
-  ];
+  const avatarColors: Record<string, string> = {
+    S: "#7b1a1a",
+    А: "#1a3a5c",
+    М: "#4a1a5c",
+    Н: "#5c2a1a",
+    Г: "#1a4a2a",
+    V: "#5c1a1a",
+    D: "#1a4a3a",
+    L: "#1a2a5c",
+  };
 
   return (
-    <div className="min-h-screen bg-[#1a1c1e] text-white overflow-x-hidden">
-      {/* Навигация */}
-      <nav className="bg-[#111214] border-b border-[#2a2d31] px-4 sm:px-6 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-black text-sm">AZ</span>
+    <div style={{ minHeight: "100vh", background: "#14110f", color: "#d4c5a9", fontFamily: "'Segoe UI', sans-serif", overflowX: "hidden" }}>
+
+      {/* Шапка */}
+      <nav style={{ background: "#1c1712", borderBottom: "2px solid #6b1a1a", padding: "0 24px" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 60 }}>
+
+          {/* Лого */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ width: 42, height: 42, background: "linear-gradient(135deg, #c0392b, #8b0000)", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 12px rgba(192,57,43,0.5)", border: "1px solid #c0392b" }}>
+              <span style={{ color: "#fff", fontWeight: 900, fontSize: 13, letterSpacing: 1 }}>AZ</span>
             </div>
             <div>
-              <h1 className="text-base sm:text-lg font-bold text-white leading-tight">Arizona RP</h1>
-              <p className="text-[10px] sm:text-xs text-yellow-400 font-medium">Sedona Server</p>
+              <div style={{ color: "#e8d5b0", fontWeight: 800, fontSize: 16, letterSpacing: 0.5 }}>ARIZONA ROLE PLAY</div>
+              <div style={{ color: "#c0392b", fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase" }}>Sedona</div>
             </div>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2">
-            <Button variant="ghost" className="text-[#8e9297] hover:text-white hover:bg-[#2a2d31] text-sm px-3">
-              <Icon name="Globe" size={16} className="mr-2" />
-              Сайт
-            </Button>
-            <Button variant="ghost" className="text-[#8e9297] hover:text-white hover:bg-[#2a2d31] text-sm px-3">
-              <Icon name="Download" size={16} className="mr-2" />
-              Скачать
-            </Button>
-            <Button className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-5 py-2 rounded-lg text-sm">
-              Играть сейчас
-            </Button>
+          {/* Навигация десктоп */}
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }} className="hidden sm:flex">
+            {["Главная", "Правила", "Фракции", "Топ игроков"].map((item) => (
+              <button key={item} style={{ background: "none", border: "none", color: "#9e8e76", cursor: "pointer", padding: "8px 14px", fontSize: 13, fontWeight: 600, borderRadius: 6, transition: "all 0.2s" }}
+                onMouseEnter={e => { (e.target as HTMLElement).style.color = "#e8d5b0"; (e.target as HTMLElement).style.background = "rgba(192,57,43,0.1)"; }}
+                onMouseLeave={e => { (e.target as HTMLElement).style.color = "#9e8e76"; (e.target as HTMLElement).style.background = "none"; }}>
+                {item}
+              </button>
+            ))}
+            <button style={{ marginLeft: 8, background: "linear-gradient(135deg, #c0392b, #8b0000)", border: "none", color: "#fff", cursor: "pointer", padding: "9px 20px", fontSize: 13, fontWeight: 700, borderRadius: 6, letterSpacing: 0.5, boxShadow: "0 2px 12px rgba(192,57,43,0.4)" }}>
+              Играть →
+            </button>
           </div>
 
-          <Button
-            variant="ghost"
-            className="sm:hidden text-[#8e9297] hover:text-white hover:bg-[#2a2d31] p-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
+          {/* Мобильное меню */}
+          <button className="sm:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{ background: "none", border: "1px solid #3a2a1a", color: "#9e8e76", cursor: "pointer", padding: "6px 10px", borderRadius: 6 }}>
             <Icon name={mobileMenuOpen ? "X" : "Menu"} size={20} />
-          </Button>
+          </button>
         </div>
 
         {mobileMenuOpen && (
-          <div className="sm:hidden mt-3 pt-3 border-t border-[#2a2d31] flex flex-col gap-2">
-            <Button variant="ghost" className="text-[#8e9297] hover:text-white hover:bg-[#2a2d31] justify-start text-sm">
-              <Icon name="Globe" size={16} className="mr-2" />
-              Сайт
-            </Button>
-            <Button variant="ghost" className="text-[#8e9297] hover:text-white hover:bg-[#2a2d31] justify-start text-sm">
-              <Icon name="Download" size={16} className="mr-2" />
-              Скачать
-            </Button>
-            <Button className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold rounded-lg text-sm">
-              Играть сейчас
-            </Button>
+          <div style={{ borderTop: "1px solid #3a2a1a", padding: "12px 0" }} className="sm:hidden">
+            {["Главная", "Правила", "Фракции", "Топ игроков"].map((item) => (
+              <div key={item} style={{ padding: "10px 16px", color: "#9e8e76", fontSize: 14, cursor: "pointer" }}>{item}</div>
+            ))}
+            <div style={{ padding: "12px 16px" }}>
+              <button style={{ width: "100%", background: "linear-gradient(135deg, #c0392b, #8b0000)", border: "none", color: "#fff", cursor: "pointer", padding: "10px", fontSize: 14, fontWeight: 700, borderRadius: 6 }}>
+                Играть →
+              </button>
+            </div>
           </div>
         )}
       </nav>
 
-      {/* Основной макет */}
-      <div className="flex" style={{ minHeight: "calc(100vh - 57px)" }}>
-        {/* Левая панель серверов */}
-        <div className="hidden lg:flex w-[68px] bg-[#0d0e10] flex-col items-center py-3 gap-2">
-          <div className="w-11 h-11 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl hover:rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer shadow-lg">
-            <span className="text-white font-black text-xs">AZ</span>
-          </div>
-          <div className="w-7 h-px bg-[#2a2d31] rounded-full my-1"></div>
-          {["🏙️", "🚔", "🏎️", "🌵"].map((emoji, i) => (
-            <div
-              key={i}
-              className="w-11 h-11 bg-[#2a2d31] rounded-3xl hover:rounded-xl transition-all duration-200 flex items-center justify-center cursor-pointer hover:bg-[#3a3d42] text-lg"
-            >
-              {emoji}
-            </div>
-          ))}
-        </div>
+      {/* Основной контент */}
+      <div style={{ display: "flex" }}>
 
-        {/* Боковая панель каналов */}
-        <div className={`${mobileSidebarOpen ? "block" : "hidden"} lg:block w-full lg:w-56 bg-[#161719] flex flex-col`}>
-          {/* Заголовок сервера */}
-          <div className="px-4 py-3 border-b border-[#0d0e10] flex items-center justify-between cursor-pointer hover:bg-[#1e2022] transition">
-            <h2 className="text-white font-bold text-sm truncate">Arizona RP — Sedona</h2>
-            <Icon name="ChevronDown" size={16} className="text-[#8e9297] ml-2 flex-shrink-0" />
+        {/* Левый сайдбар — каналы */}
+        <div className={`${mobileSidebarOpen ? "block" : "hidden"} lg:block`} style={{ width: 220, background: "#1c1712", borderRight: "1px solid #2a1f14", flexShrink: 0, minHeight: "calc(100vh - 62px)", display: "flex", flexDirection: "column" }}>
+
+          {/* Заголовок */}
+          <div style={{ padding: "14px 16px", borderBottom: "1px solid #2a1f14", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <span style={{ color: "#e8d5b0", fontWeight: 700, fontSize: 13 }}>Arizona RP — Sedona</span>
+            <Icon name="ChevronDown" size={14} color="#6b5a42" />
           </div>
 
-          <div className="flex-1 p-2 overflow-y-auto">
-            {/* Быстрые разделы */}
-            <div className="grid grid-cols-2 gap-1.5 mb-4 mt-2">
-              {categories.map((cat) => (
-                <div key={cat.label} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-[#1e2022] hover:bg-[#2a2d31] cursor-pointer transition">
-                  <div className={`w-7 h-7 ${cat.color} rounded-lg flex items-center justify-center`}>
-                    <Icon name={cat.icon} size={14} className="text-white" />
+          {/* Категории */}
+          <div style={{ padding: "12px 8px 8px" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 12 }}>
+              {[
+                { icon: "Shield", label: "Правила", bg: "#7b1a1a" },
+                { icon: "Download", label: "Скачать", bg: "#1a4a1a" },
+                { icon: "Users", label: "Фракции", bg: "#1a2a5c" },
+                { icon: "Star", label: "Топ", bg: "#4a3a00" },
+              ].map((cat) => (
+                <div key={cat.label} style={{ background: "#231c14", border: "1px solid #3a2a1a", borderRadius: 8, padding: "8px 4px", display: "flex", flexDirection: "column", alignItems: "center", gap: 4, cursor: "pointer" }}>
+                  <div style={{ width: 28, height: 28, background: cat.bg, borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <Icon name={cat.icon} size={14} color="#e8d5b0" />
                   </div>
-                  <span className="text-[#dcddde] text-[10px] font-medium text-center leading-tight">{cat.label}</span>
+                  <span style={{ color: "#9e8e76", fontSize: 10, fontWeight: 600 }}>{cat.label}</span>
                 </div>
               ))}
             </div>
 
             {/* Текстовые каналы */}
-            <div className="mb-3">
-              <div className="flex items-center gap-1 px-2 py-1 text-[#8e9297] text-[10px] font-bold uppercase tracking-wider mb-1">
-                <Icon name="ChevronDown" size={12} />
+            <div style={{ marginBottom: 4 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 8px", color: "#6b5a42", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>
+                <Icon name="ChevronDown" size={11} />
                 <span>Текстовые каналы</span>
               </div>
               {channels.map((ch) => (
-                <div
-                  key={ch.name}
-                  onClick={() => setActiveChannel(ch.name)}
-                  className={`flex items-center gap-2 px-2 py-1.5 rounded cursor-pointer transition-colors ${
-                    activeChannel === ch.name
-                      ? "bg-[#2e3035] text-white"
-                      : "text-[#72767d] hover:text-[#dcddde] hover:bg-[#1e2022]"
-                  }`}
-                >
-                  <Icon name="Hash" size={15} className="flex-shrink-0" />
-                  <span className="text-xs truncate">{ch.name}</span>
+                <div key={ch.name} onClick={() => setActiveChannel(ch.name)}
+                  style={{
+                    display: "flex", alignItems: "center", gap: 8, padding: "6px 10px", borderRadius: 6, cursor: "pointer",
+                    background: activeChannel === ch.name ? "rgba(192,57,43,0.2)" : "none",
+                    color: activeChannel === ch.name ? "#e8d5b0" : "#6b5a42",
+                    borderLeft: activeChannel === ch.name ? "2px solid #c0392b" : "2px solid transparent",
+                    marginBottom: 2,
+                  }}>
+                  <Icon name="Hash" size={14} />
+                  <span style={{ fontSize: 12, fontWeight: 500 }}>{ch.name}</span>
                 </div>
               ))}
             </div>
 
-            {/* Голосовые каналы */}
-            <div>
-              <div className="flex items-center gap-1 px-2 py-1 text-[#8e9297] text-[10px] font-bold uppercase tracking-wider mb-1">
-                <Icon name="ChevronDown" size={12} />
+            {/* Голосовые */}
+            <div style={{ marginTop: 8 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 8px", color: "#6b5a42", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1 }}>
+                <Icon name="ChevronDown" size={11} />
                 <span>Голосовые</span>
               </div>
               {voiceChannels.map((ch) => (
-                <div
-                  key={ch}
-                  className="flex items-center gap-2 px-2 py-1.5 rounded text-[#72767d] hover:text-[#dcddde] hover:bg-[#1e2022] cursor-pointer transition-colors"
-                >
-                  <Icon name="Volume2" size={15} className="flex-shrink-0" />
-                  <span className="text-xs">{ch}</span>
+                <div key={ch} style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 10px", borderRadius: 6, cursor: "pointer", color: "#6b5a42", marginBottom: 2 }}>
+                  <Icon name="Volume2" size={14} />
+                  <span style={{ fontSize: 12 }}>{ch}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Плашка пользователя */}
-          <div className="p-2 bg-[#111214] flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
-              <span className="text-white text-xs font-bold">Г</span>
+          {/* Пользователь */}
+          <div style={{ marginTop: "auto", padding: "8px", background: "#161008", display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ width: 32, height: 32, background: avatarColors["Г"], borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1px solid #3a2a1a" }}>
+              <span style={{ color: "#e8d5b0", fontSize: 12, fontWeight: 700 }}>Г</span>
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-white text-xs font-semibold truncate">Гость</div>
-              <div className="text-[#8e9297] text-[10px]">Не авторизован</div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ color: "#e8d5b0", fontSize: 12, fontWeight: 600 }}>Гость</div>
+              <div style={{ color: "#6b5a42", fontSize: 10 }}>Не авторизован</div>
             </div>
-            <Button variant="ghost" size="sm" className="w-7 h-7 p-0 hover:bg-[#2a2d31]">
-              <Icon name="Settings" size={14} className="text-[#8e9297]" />
-            </Button>
+            <Icon name="Settings" size={14} color="#6b5a42" style={{ cursor: "pointer" }} />
           </div>
         </div>
 
-        {/* Основная область чата */}
-        <div className="flex-1 flex flex-col min-w-0">
+        {/* Центральная область */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+
           {/* Заголовок канала */}
-          <div className="h-12 bg-[#1a1c1e] border-b border-[#0d0e10] flex items-center px-4 gap-2 flex-shrink-0">
-            <Button
-              variant="ghost"
-              className="lg:hidden text-[#8e9297] hover:text-white hover:bg-[#2a2d31] p-1 mr-1"
-              onClick={() => setMobileSidebarOpen(true)}
-            >
+          <div style={{ height: 50, background: "#1c1712", borderBottom: "1px solid #2a1f14", display: "flex", alignItems: "center", padding: "0 16px", gap: 10 }}>
+            <button className="lg:hidden" onClick={() => setMobileSidebarOpen(true)}
+              style={{ background: "none", border: "none", color: "#6b5a42", cursor: "pointer", padding: 4 }}>
               <Icon name="Menu" size={18} />
-            </Button>
-            <Icon name="Hash" size={18} className="text-[#8e9297]" />
-            <span className="text-white font-semibold text-sm">{activeChannel}</span>
-            <div className="w-px h-5 bg-[#2a2d31] mx-2 hidden sm:block"></div>
-            <span className="text-[#8e9297] text-xs hidden sm:block">Добро пожаловать на форум Arizona RP Sedona</span>
-            <div className="ml-auto flex items-center gap-3">
-              <Icon name="Bell" size={18} className="text-[#8e9297] cursor-pointer hover:text-white transition" />
-              <Icon name="Users" size={18} className="text-[#8e9297] cursor-pointer hover:text-white transition" />
-              <Icon name="Search" size={18} className="text-[#8e9297] cursor-pointer hover:text-white transition" />
+            </button>
+            <Icon name="Hash" size={17} color="#6b5a42" />
+            <span style={{ color: "#e8d5b0", fontWeight: 700, fontSize: 14 }}>{activeChannel}</span>
+            <div style={{ width: 1, height: 20, background: "#2a1f14", margin: "0 8px" }} className="hidden sm:block" />
+            <span style={{ color: "#6b5a42", fontSize: 12 }} className="hidden sm:block">Официальный форум Arizona RP Sedona</span>
+            <div style={{ marginLeft: "auto", display: "flex", gap: 14 }}>
+              <Icon name="Bell" size={17} color="#6b5a42" style={{ cursor: "pointer" }} />
+              <Icon name="Users" size={17} color="#6b5a42" style={{ cursor: "pointer" }} />
+              <Icon name="Search" size={17} color="#6b5a42" style={{ cursor: "pointer" }} />
             </div>
           </div>
 
-          {/* Сообщения */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-5">
-            {/* Приветствие канала */}
-            <div className="flex flex-col items-start mb-6">
-              <div className="w-14 h-14 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-3 shadow-xl">
-                <Icon name="Hash" size={28} className="text-white" />
+          {/* Контент чата */}
+          <div style={{ flex: 1, overflowY: "auto", padding: 20, display: "flex", flexDirection: "column", gap: 0 }}>
+
+            {/* Приветствие */}
+            <div style={{ marginBottom: 28 }}>
+              <div style={{ width: 56, height: 56, background: "linear-gradient(135deg, #c0392b, #8b0000)", borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12, boxShadow: "0 4px 20px rgba(192,57,43,0.4)", border: "1px solid #c0392b" }}>
+                <Icon name="Hash" size={26} color="#fff" />
               </div>
-              <h2 className="text-white text-2xl font-bold mb-1">Добро пожаловать в #{activeChannel}</h2>
-              <p className="text-[#8e9297] text-sm">Это начало канала <strong className="text-[#dcddde]">#{activeChannel}</strong> на сервере <strong className="text-yellow-400">Arizona RP Sedona</strong>.</p>
+              <h2 style={{ color: "#e8d5b0", fontSize: 22, fontWeight: 800, marginBottom: 4 }}>Добро пожаловать в #{activeChannel}</h2>
+              <p style={{ color: "#6b5a42", fontSize: 13 }}>Начало канала <strong style={{ color: "#9e8e76" }}>#{activeChannel}</strong> на сервере <strong style={{ color: "#c0392b" }}>Arizona RP Sedona</strong>.</p>
+              <div style={{ height: 1, background: "linear-gradient(to right, #3a2a1a, transparent)", margin: "20px 0" }} />
             </div>
 
             {/* Статистика */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 10, marginBottom: 24 }}>
               {[
-                { label: "Онлайн", value: "1 247", icon: "Wifi", color: "text-green-400" },
-                { label: "Игроков", value: "18 500+", icon: "Users", color: "text-blue-400" },
-                { label: "Фракций", value: "24", icon: "Shield", color: "text-yellow-400" },
-                { label: "Аптайм", value: "99.9%", icon: "Activity", color: "text-purple-400" },
+                { label: "Онлайн", value: "1 247", icon: "Wifi", color: "#27ae60" },
+                { label: "Игроков", value: "18 500+", icon: "Users", color: "#3498db" },
+                { label: "Фракций", value: "24", icon: "Shield", color: "#c0392b" },
+                { label: "Аптайм", value: "99.9%", icon: "Activity", color: "#e67e22" },
               ].map((stat) => (
-                <div key={stat.label} className="bg-[#111214] border border-[#2a2d31] rounded-xl p-3 flex items-center gap-3">
-                  <Icon name={stat.icon} size={20} className={stat.color} />
+                <div key={stat.label} style={{ background: "#1c1712", border: "1px solid #2a1f14", borderRadius: 10, padding: "12px 14px", display: "flex", alignItems: "center", gap: 10 }}>
+                  <Icon name={stat.icon} size={20} color={stat.color} />
                   <div>
-                    <div className={`text-base font-bold ${stat.color}`}>{stat.value}</div>
-                    <div className="text-[#8e9297] text-xs">{stat.label}</div>
+                    <div style={{ color: stat.color, fontWeight: 800, fontSize: 16 }}>{stat.value}</div>
+                    <div style={{ color: "#6b5a42", fontSize: 11 }}>{stat.label}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Сообщения форума */}
+            {/* Сообщения */}
             {messages.map((msg, idx) => (
-              <div key={msg.id} className={`flex gap-3 ${idx > 0 ? "" : ""}`}>
-                <div className={`w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br ${msg.color} rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-sm`}>
-                  {msg.avatar}
+              <div key={msg.id} style={{ display: "flex", gap: 12, padding: "10px 0", borderTop: idx === 0 ? "none" : "1px solid #1f1810" }}>
+                <div style={{ width: 38, height: 38, background: avatarColors[msg.avatar] || "#2a1f14", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1px solid #3a2a1a" }}>
+                  <span style={{ color: "#e8d5b0", fontSize: 13, fontWeight: 700 }}>{msg.avatar}</span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-baseline gap-2 mb-0.5 flex-wrap">
-                    <span className="text-white font-semibold text-sm">{msg.user}</span>
-                    <span className={`text-xs font-medium px-1.5 py-0.5 rounded bg-[#1e2022] ${msg.roleColor}`}>{msg.role}</span>
-                    <span className="text-[#4e5359] text-xs">{msg.time}</span>
-                    {msg.pin && <span className="text-xs text-yellow-400 flex items-center gap-1"><Icon name="Pin" size={10} />закреплено</span>}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                    <span style={{ color: "#e8d5b0", fontWeight: 700, fontSize: 14 }}>{msg.user}</span>
+                    <span style={{ background: msg.roleColor + "22", color: msg.roleColor, fontSize: 10, fontWeight: 700, padding: "1px 7px", borderRadius: 4, border: `1px solid ${msg.roleColor}44` }}>{msg.role}</span>
+                    <span style={{ color: "#3a2a1a", fontSize: 11 }}>{msg.time}</span>
+                    {msg.pin && <span style={{ color: "#c0392b", fontSize: 10, display: "flex", alignItems: "center", gap: 3 }}><Icon name="Pin" size={10} />закреплено</span>}
                   </div>
-                  <p className="text-[#dcddde] text-sm leading-relaxed">{msg.text}</p>
+                  <p style={{ color: "#b0a090", fontSize: 13, lineHeight: 1.6, margin: 0 }}>{msg.text}</p>
                 </div>
               </div>
             ))}
 
-            {/* Блок "Как начать" */}
-            <div className="bg-[#111214] border border-[#2a2d31] rounded-xl overflow-hidden mt-6">
-              <div className="bg-gradient-to-r from-yellow-600 to-orange-700 px-4 py-3">
-                <h3 className="text-white font-bold text-base flex items-center gap-2">
-                  <Icon name="Rocket" size={18} />
-                  Как начать играть на Arizona RP Sedona
-                </h3>
+            {/* Блок как начать */}
+            <div style={{ background: "#1c1712", border: "1px solid #3a2a1a", borderRadius: 12, overflow: "hidden", marginTop: 24 }}>
+              <div style={{ background: "linear-gradient(135deg, #8b0000, #c0392b)", padding: "14px 18px", display: "flex", alignItems: "center", gap: 10 }}>
+                <Icon name="Rocket" size={18} color="#fff" />
+                <span style={{ color: "#fff", fontWeight: 800, fontSize: 14 }}>Как начать играть на Arizona RP Sedona</span>
               </div>
-              <div className="p-4 space-y-3">
+              <div style={{ padding: 18 }}>
                 {[
-                  { step: "1", text: "Скачай клиент игры SAMP / GTA SA", icon: "Download" },
-                  { step: "2", text: "Подключись к серверу: play.arizona-sedona.ru", icon: "Globe" },
-                  { step: "3", text: "Зарегистрируйся в игре командой /reg", icon: "UserPlus" },
-                  { step: "4", text: "Прочитай правила сервера в #правила", icon: "BookOpen" },
+                  { step: "1", text: "Скачай клиент GTA SA + SAMP", icon: "Download" },
+                  { step: "2", text: "Подключись: play.arizona-sedona.ru", icon: "Globe" },
+                  { step: "3", text: "Зарегистрируйся командой /reg", icon: "UserPlus" },
+                  { step: "4", text: "Прочитай правила в #правила", icon: "BookOpen" },
                 ].map((item) => (
-                  <div key={item.step} className="flex items-center gap-3">
-                    <div className="w-7 h-7 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-black font-bold text-xs">{item.step}</span>
+                  <div key={item.step} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
+                    <div style={{ width: 26, height: 26, background: "#8b0000", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ color: "#fff", fontWeight: 800, fontSize: 11 }}>{item.step}</span>
                     </div>
-                    <Icon name={item.icon} size={16} className="text-[#8e9297] flex-shrink-0" />
-                    <span className="text-[#dcddde] text-sm">{item.text}</span>
+                    <Icon name={item.icon} size={15} color="#6b5a42" />
+                    <span style={{ color: "#b0a090", fontSize: 13 }}>{item.text}</span>
                   </div>
                 ))}
-                <Button className="w-full mt-2 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 rounded-lg">
-                  <Icon name="Download" size={16} className="mr-2" />
-                  Скачать и начать играть
-                </Button>
+                <button style={{ width: "100%", marginTop: 6, background: "linear-gradient(135deg, #c0392b, #8b0000)", border: "none", color: "#fff", cursor: "pointer", padding: "11px", fontSize: 14, fontWeight: 700, borderRadius: 8, letterSpacing: 0.5, boxShadow: "0 2px 16px rgba(192,57,43,0.4)" }}>
+                  Скачать и начать играть →
+                </button>
               </div>
             </div>
           </div>
 
           {/* Поле ввода */}
-          <div className="px-4 pb-4 pt-2 flex-shrink-0">
-            <div className="bg-[#2a2d31] rounded-xl flex items-center gap-2 px-4 py-3">
-              <Icon name="Plus" size={18} className="text-[#8e9297] cursor-pointer hover:text-white transition flex-shrink-0" />
-              <span className="flex-1 text-[#6b6f76] text-sm select-none">Написать в #{activeChannel}...</span>
-              <div className="flex items-center gap-2">
-                <Icon name="Gift" size={18} className="text-[#8e9297] cursor-pointer hover:text-yellow-400 transition" />
-                <Icon name="Smile" size={18} className="text-[#8e9297] cursor-pointer hover:text-yellow-400 transition" />
-              </div>
+          <div style={{ padding: "12px 20px", background: "#1c1712", borderTop: "1px solid #2a1f14" }}>
+            <div style={{ background: "#231c14", border: "1px solid #3a2a1a", borderRadius: 10, display: "flex", alignItems: "center", gap: 10, padding: "10px 14px" }}>
+              <Icon name="Plus" size={18} color="#6b5a42" style={{ cursor: "pointer" }} />
+              <span style={{ flex: 1, color: "#4a3a2a", fontSize: 13 }}>Написать в #{activeChannel}...</span>
+              <Icon name="Smile" size={18} color="#6b5a42" style={{ cursor: "pointer" }} />
             </div>
           </div>
         </div>
 
-        {/* Правая панель участников */}
-        <div className="hidden xl:flex w-56 bg-[#161719] flex-col p-3">
-          <h3 className="text-[#8e9297] text-[10px] font-bold uppercase tracking-wider px-2 mb-3">Онлайн — 1 247</h3>
+        {/* Правый сайдбар — участники */}
+        <div className="hidden xl:flex" style={{ width: 210, background: "#1c1712", borderLeft: "1px solid #2a1f14", flexDirection: "column", padding: 12 }}>
+          <div style={{ color: "#6b5a42", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, padding: "4px 8px", marginBottom: 8 }}>
+            Онлайн — 1 247
+          </div>
 
-          <div className="mb-4">
-            <div className="text-[#faa61a] text-[10px] font-bold uppercase tracking-wider px-2 mb-2">Администрация</div>
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ color: "#c0392b", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, padding: "2px 8px", marginBottom: 6 }}>Администрация</div>
             {[
-              { name: "Sheriff_Kane", avatar: "S", color: "from-yellow-600 to-yellow-800" },
-              { name: "Admin_Volkov", avatar: "V", color: "from-red-600 to-red-800" },
+              { name: "Sheriff_Kane", avatar: "S" },
+              { name: "Admin_Volkov", avatar: "V" },
             ].map((u) => (
-              <div key={u.name} className="flex items-center gap-2 px-2 py-1 rounded hover:bg-[#1e2022] cursor-pointer transition">
-                <div className={`w-7 h-7 bg-gradient-to-br ${u.color} rounded-full flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-white text-xs font-bold">{u.avatar}</span>
+              <div key={u.name} style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 8px", borderRadius: 6, cursor: "pointer" }}>
+                <div style={{ width: 28, height: 28, background: avatarColors[u.avatar], borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1px solid #3a2a1a", position: "relative" }}>
+                  <span style={{ color: "#e8d5b0", fontSize: 11, fontWeight: 700 }}>{u.avatar}</span>
+                  <div style={{ position: "absolute", bottom: -1, right: -1, width: 9, height: 9, background: "#27ae60", borderRadius: "50%", border: "2px solid #1c1712" }} />
                 </div>
-                <span className="text-[#dcddde] text-xs truncate">{u.name}</span>
+                <span style={{ color: "#9e8e76", fontSize: 12 }}>{u.name}</span>
               </div>
             ))}
           </div>
 
-          <div className="mb-4">
-            <div className="text-[#3ba55c] text-[10px] font-bold uppercase tracking-wider px-2 mb-2">Игроки</div>
+          <div>
+            <div style={{ color: "#27ae60", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: 1.5, padding: "2px 8px", marginBottom: 6 }}>Игроки</div>
             {[
-              { name: "ProRPG_Alex", avatar: "А", color: "from-blue-500 to-blue-700" },
-              { name: "Mia_Ramirez", avatar: "М", color: "from-pink-500 to-purple-600" },
-              { name: "Night_Rider_88", avatar: "Н", color: "from-red-500 to-orange-500" },
-              { name: "Desert_Cowboy", avatar: "D", color: "from-green-600 to-teal-700" },
-              { name: "Lucky_Seven", avatar: "L", color: "from-indigo-500 to-blue-600" },
+              { name: "ProRPG_Alex", avatar: "А" },
+              { name: "Mia_Ramirez", avatar: "М" },
+              { name: "Night_Rider_88", avatar: "Н" },
+              { name: "Desert_Cowboy", avatar: "D" },
+              { name: "Lucky_Seven", avatar: "L" },
             ].map((u) => (
-              <div key={u.name} className="flex items-center gap-2 px-2 py-1 rounded hover:bg-[#1e2022] cursor-pointer transition">
-                <div className={`w-7 h-7 bg-gradient-to-br ${u.color} rounded-full flex items-center justify-center flex-shrink-0 relative`}>
-                  <span className="text-white text-xs font-bold">{u.avatar}</span>
-                  <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#3ba55c] border-2 border-[#161719] rounded-full"></div>
+              <div key={u.name} style={{ display: "flex", alignItems: "center", gap: 8, padding: "5px 8px", borderRadius: 6, cursor: "pointer" }}>
+                <div style={{ width: 28, height: 28, background: avatarColors[u.avatar] || "#2a1f14", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "1px solid #3a2a1a", position: "relative" }}>
+                  <span style={{ color: "#e8d5b0", fontSize: 11, fontWeight: 700 }}>{u.avatar}</span>
+                  <div style={{ position: "absolute", bottom: -1, right: -1, width: 9, height: 9, background: "#27ae60", borderRadius: "50%", border: "2px solid #1c1712" }} />
                 </div>
-                <span className="text-[#8e9297] text-xs truncate">{u.name}</span>
+                <span style={{ color: "#6b5a42", fontSize: 12 }}>{u.name}</span>
               </div>
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );
